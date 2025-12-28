@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5b13ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131118",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark dark group/design-root overflow-x-hidden">
+<div class="sticky top-0 z-10 flex items-center bg-background-dark/80 backdrop-blur-sm p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-white text-2xl">search</span>
+</div>
+<h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">For You</h1>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-white text-2xl">tune</span>
+</button>
+</div>
+</div>
+<main class="flex flex-col gap-4 p-4">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1f1c27]">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl" data-alt="A lively concert with a large crowd and colorful stage lights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRS7x_jJaIHhOpL_jRT5ZPXV_izA3mBo7m4aR4iL3S-HKTx_QN3t5pIzZFZEuuUx2cC18c9yD64wfCxdLknXJzosXyNWanQVrrx6sulWzCvV42cQyxkmezZ_hrqfpfpFll1wGzsdxIzpT5PP7pXwPHd4aRrG2aXv3BuZZ94_Uwp797-OqFB8zst6-jZGaQ4FXGtXWorMSzlTKq0GzR6JKZ4TM3rfuvkxa647TIAFZbmuY3VDz2e8jzjmcehwR3SUuqbHdrNP9xmqLY");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-[#a69db9] text-sm font-normal leading-normal">Music</p>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Summer Music Festival</p>
+<p class="text-[#a69db9] text-base font-normal leading-normal">A weekend of live music, food trucks, and local artisans.</p>
+<div class="flex items-center gap-1 text-[#FFC700]">
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg text-gray-500">star_border</span>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="text-white text-base font-normal leading-normal">Sat, Oct 26 @ 7:00 PM</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-medium leading-normal gap-2">
+<span class="material-symbols-outlined text-lg">bookmark_add</span>
+<span class="truncate">Save</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1f1c27]">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl" data-alt="A vibrant street art mural on a brick wall" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnQSXAWryg9BijhVAQBtGc9ECh98romDTDkBZfTH4XeVCNJ1l25LeocjBYr1PRw8qIk6_m70_KRGqwQ2KwrWeDPAFaH5TI5ra5hLEBTe91k3nrr2CNu70vCsNQjiiH8esh_tiiXJVxQWpmNK6ArO0TYaj56kV3zc49Xr9gvYuFdxLcXZcsQkp7q8oLiyRp96qRCbk4Zb_Ja092lWl9vdjOh9XTkRVRxw6hsn52lZVhjEu6OtF2L5Vh3gVUqFCSR69YmdJ8dxxutNmw");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-[#a69db9] text-sm font-normal leading-normal">Art</p>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Downtown Art Walk</p>
+<p class="text-[#a69db9] text-base font-normal leading-normal">Explore galleries and street art from local and international artists.</p>
+<div class="flex items-center gap-1 text-[#FFC700]">
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star_half</span>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="text-white text-base font-normal leading-normal">Fri, Nov 1 @ 6:00 PM</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-medium leading-normal gap-2">
+<span class="material-symbols-outlined text-lg">bookmark_add</span>
+<span class="truncate">Save</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1f1c27]">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl" data-alt="A colorful display of various international food dishes on a table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCpz6Ol3cW33mOfu3B2v9n9-KyC3yw_iSvy6dcGffiEonZxDIeloDlM1rqrZUgms898Jqyl9MdWotp-BuVPI8WaqgO_N1LCrytF-ZZy23pZaeD-e7hptvqCPcIRexENrLQqx7CoKcqPdR-hL-KKUeaRy6-3SQZtDTEwDmkHoVr07kD4jFY7__2hnQeqTmW2HBzVcuiswMUMkVfh6BKCBw6mAwf09AK_3y3ktBJTsVoP-XiPF3pJW6qPVA9qz9oe2fWcvXnLSc1fEEf9");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-[#a69db9] text-sm font-normal leading-normal">Food</p>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">International Food Festival</p>
+<p class="text-[#a69db9] text-base font-normal leading-normal">Taste the flavors of the world with over 50 food stalls.</p>
+<div class="flex items-center gap-1 text-[#FFC700]">
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+</div>
+<div class="flex items-center justify-between mt-2">
+<p class="text-white text-base font-normal leading-normal">Sun, Nov 3 @ 12:00 PM</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-medium leading-normal gap-2">
+<span class="material-symbols-outlined text-lg">bookmark_add</span>
+<span class="truncate">Save</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-6 right-6">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 w-14 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg">
+<span class="material-symbols-outlined text-white text-2xl">add</span>
+</button>
+</div>
+</div>
+</body></html>
