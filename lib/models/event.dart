@@ -4,7 +4,7 @@ class Event {
   final String description;
   final DateTime date;
   final String location;
-  final String? imageUrl;
+  final String? bannerImageUrl;
   final int categoryId;
 
   Event({
@@ -13,7 +13,7 @@ class Event {
     required this.description,
     required this.date,
     required this.location,
-    this.imageUrl,
+    this.bannerImageUrl,
     required this.categoryId,
   });
 
@@ -22,9 +22,11 @@ class Event {
       id: json['id']?.toString() ?? '',
       title: json['title'] ?? '',
       description: json['description'] ?? '',
-      date: DateTime.parse(json['date'] ?? DateTime.now().toIso8601String()),
-      location: json['location'] ?? '',
-      imageUrl: json['imageUrl'],
+      date: json['eventTime'] != null 
+          ? DateTime.parse(json['eventTime'])
+          : DateTime.now(),
+      location: json['locationName'] ?? '',
+      bannerImageUrl: json['bannerImageUrl'],
       categoryId: json['categoryId'] ?? 0,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/event_provider.dart';
+import '../widgets/event_card_widget.dart';
 import 'event_detail_screen.dart';
 
 class EventListScreen extends StatefulWidget {
@@ -67,27 +68,16 @@ class _EventListScreenState extends State<EventListScreen> {
                         itemCount: eventProvider.events.length,
                         itemBuilder: (context, index) {
                           final event = eventProvider.events[index];
-                          return Card(
-                            margin: const EdgeInsets.all(8.0),
-                            child: ListTile(
-                              title: Text(event.title),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(event.location),
-                                  Text(event.date.toLocal().toString()),
-                                ],
-                              ),
-                              isThreeLine: true,
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => EventDetailScreen(event: event),
-                                  ),
-                                );
-                              },
-                            ),
+                          return EventCardWidget(
+                            event: event,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EventDetailScreen(event: event),
+                                ),
+                              );
+                            },
                           );
                         },
                       ),

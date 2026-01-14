@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../models/event.dart';
 import '../providers/auth_provider.dart';
 import '../providers/event_provider.dart';
+import '../core/api_constants.dart';
 
 class EventDetailScreen extends StatefulWidget {
   final Event event;
@@ -17,6 +19,28 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   double _rating = 5;
   bool _isRegistering = false;
   bool _isSubmittingReview = false;
+
+  String _formatDateTime(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final tomorrow = today.add(const Duration(days: 1));
+    final eventDate = DateTime(date.year, date.month, date.day);
+
+    // Format time
+    final timeFormat = DateFormat('h:mm a');
+    final timeStr = timeFormat.format(date);
+
+    // Check if it's today or tomorrow
+    if (eventDate == today) {
+      return 'Today at $timeStr';
+    } else if (eventDate == tomorrow) {
+      return 'Tomorrow at $timeStr';
+    } else {
+      // For other dates, show "January 15, 2026 at 2:30 PM"
+      final dateFormat = DateFormat('MMMM d, y');
+      return '${dateFormat.format(date)} at $timeStr';
+    }
+  }
 
   Future<void> _register() async {
     setState(() => _isRegistering = true);
@@ -87,16 +111,40 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // In a real app, we'd use Image.network with errorBuilder
-            if (widget.event.imageUrl != null && widget.event.imageUrl!.isNotEmpty)
-              Image.network(
-                widget.event.imageUrl!,
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => 
-                  const SizedBox(height: 200, child: Center(child: Icon(Icons.broken_image, size: 50))),
-              ),
+            // Banner image or placeholder
+            widget.event.bannerImageUrl != null && widget.event.bannerImageUrl!.isNotEmpty
+                ? Image.network(
+                    '${ApiConstants.baseUrl}${widget.event.bannerImageUrl}',
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 200,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.grey[300]!, Colors.grey[400]!],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: const Center(child: Icon(Icons.broken_image, size: 50, color: Colors.white70)),
+                    ),
+                  )
+                : Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.grey[300]!, Colors.grey[400]!],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: const Center(
+                      child: Icon(Icons.event, size: 64, color: Colors.white70),
+                    ),
+                  ),
             const SizedBox(height: 16),
             Text(widget.event.title, style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 8),
@@ -104,17 +152,24 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
               children: [
                 const Icon(Icons.calendar_today, size: 16),
                 const SizedBox(width: 4),
-                Text(widget.event.date.toLocal().toString().split('.')[0]),
+                Text(_formatDateTime(widget.event.date.toLocal())),
               ],
             ),
             const SizedBox(height: 4),
-            Row(
-              children: [
-                const Icon(Icons.location_on, size: 16),
-                const SizedBox(width: 4),
-                Text(widget.event.location),
-              ],
-            ),
+            if (widget.event.location.trim().isNotEmpty)
+              Row(
+                children: [
+                  const Icon(Icons.location_on, size: 16),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: Text(
+                      widget.event.location,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             const SizedBox(height: 16),
             Text(widget.event.description),
             const SizedBox(height: 24),
