@@ -7,11 +7,7 @@ class EventCardWidget extends StatelessWidget {
   final Event event;
   final VoidCallback? onTap;
 
-  const EventCardWidget({
-    super.key,
-    required this.event,
-    this.onTap,
-  });
+  const EventCardWidget({super.key, required this.event, this.onTap});
 
   String _formatDateTime(DateTime date) {
     final now = DateTime.now();
@@ -49,7 +45,9 @@ class EventCardWidget extends StatelessWidget {
               // Thumbnail image
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: event.bannerImageUrl != null && event.bannerImageUrl!.isNotEmpty
+                child:
+                    event.bannerImageUrl != null &&
+                        event.bannerImageUrl!.isNotEmpty
                     ? Image.network(
                         '${ApiConstants.baseUrl}${event.bannerImageUrl}',
                         width: 100,
@@ -66,7 +64,11 @@ class EventCardWidget extends StatelessWidget {
                             ),
                           ),
                           child: const Center(
-                            child: Icon(Icons.broken_image, size: 30, color: Colors.white70),
+                            child: Icon(
+                              Icons.broken_image,
+                              size: 30,
+                              color: Colors.white70,
+                            ),
                           ),
                         ),
                       )
@@ -81,7 +83,11 @@ class EventCardWidget extends StatelessWidget {
                           ),
                         ),
                         child: const Center(
-                          child: Icon(Icons.event, size: 40, color: Colors.white70),
+                          child: Icon(
+                            Icons.event,
+                            size: 40,
+                            color: Colors.white70,
+                          ),
                         ),
                       ),
               ),
@@ -94,11 +100,44 @@ class EventCardWidget extends StatelessWidget {
                     Text(
                       event.title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                        fontWeight: FontWeight.w600,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    // Category badge
+                    if (event.categoryName != null &&
+                        event.categoryName!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4, bottom: 4),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(
+                              context,
+                            ).primaryColor.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Theme.of(
+                                context,
+                              ).primaryColor.withValues(alpha: 0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            event.categoryName!,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 11,
+                                ),
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 8),
                     // Location row - only show if location is not empty
                     if (event.location.trim().isNotEmpty)
@@ -107,14 +146,17 @@ class EventCardWidget extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.location_on, size: 16, color: Colors.grey),
+                            const Icon(
+                              Icons.location_on,
+                              size: 16,
+                              color: Colors.grey,
+                            ),
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
                                 event.location,
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: Colors.grey[700],
-                                    ),
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(color: Colors.grey[700]),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -125,14 +167,17 @@ class EventCardWidget extends StatelessWidget {
                     // Date row
                     Row(
                       children: [
-                        const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
+                        const Icon(
+                          Icons.calendar_today,
+                          size: 16,
+                          color: Colors.grey,
+                        ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             _formatDateTime(event.date.toLocal()),
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: Colors.grey[700],
-                                ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: Colors.grey[700]),
                           ),
                         ),
                       ],

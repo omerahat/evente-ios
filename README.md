@@ -71,6 +71,7 @@ lib/
 │   └── login_screen.dart
 ├── services/
 │   ├── auth_service.dart     # Auth API calls
+│   ├── category_service.dart # Category API calls
 │   └── event_service.dart    # Event API calls
 ├── widgets/                   # Reusable widgets
 └── main.dart                  # App entry point
@@ -85,6 +86,7 @@ The app connects to the following API endpoints:
 | Login | POST | `/api/Auth/Login` |
 | Register | POST | `/api/Auth/Register` |
 | Get Events | GET | `/api/Events` |
+| Get Categories | GET | `/api/Categories` |
 | Register for Event | POST | `/api/Registrations/{eventId}` |
 | Add Review | POST | `/api/Reviews` |
 
@@ -107,6 +109,7 @@ The API URL is configured in `lib/core/api_constants.dart`:
 | `provider` | State management |
 | `flutter_secure_storage` | Secure token storage |
 | `google_fonts` | Custom typography |
+| `intl` | Internationalization and date/time formatting |
 
 ## Development
 

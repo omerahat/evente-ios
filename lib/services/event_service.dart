@@ -21,8 +21,28 @@ class EventService {
   Future<List<Event>> getEvents(String token) async {
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
-      final response = await _dio.get('${ApiConstants.baseUrl}${ApiConstants.events}');
-      
+      final response = await _dio.get(
+        '${ApiConstants.baseUrl}${ApiConstants.events}',
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = response.data;
+        return data.map((json) => Event.fromJson(json)).toList();
+      }
+      return [];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Event>> getEventsByCategory(int categoryId, String token) async {
+    try {
+      _dio.options.headers['Authorization'] = 'Bearer $token';
+      final response = await _dio.get(
+        '${ApiConstants.baseUrl}${ApiConstants.events}',
+        queryParameters: {'categoryId': categoryId},
+      );
+
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data;
         return data.map((json) => Event.fromJson(json)).toList();
@@ -37,14 +57,21 @@ class EventService {
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
       // Fixed: Use /api/Registrations/{eventId}
-      final response = await _dio.post('${ApiConstants.baseUrl}${ApiConstants.registrations}/$eventId');
+      final response = await _dio.post(
+        '${ApiConstants.baseUrl}${ApiConstants.registrations}/$eventId',
+      );
       return response.statusCode == 200;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<bool> addReview(String eventId, int rating, String comment, String token) async {
+  Future<bool> addReview(
+    String eventId,
+    int rating,
+    String comment,
+    String token,
+  ) async {
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
       // Fixed: Use /api/Reviews with eventId in body

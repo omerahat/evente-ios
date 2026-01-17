@@ -21,6 +21,9 @@ class ApiConstants {
   // Event Endpoints
   static const String events = '/api/Events';
 
+  // Category Endpoints
+  static const String categories = '/api/Categories';
+
   // Registration Endpoints
   static const String registrations = '/api/Registrations';
 
